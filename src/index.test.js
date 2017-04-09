@@ -23,7 +23,7 @@ describe('index.html',function(){
 
     const h1 = window.document.getElementsByTagName('h1')[0];
 
-    expect(h1.innerHTML).to.equal("Welcome  .. Hello? world.....");
+    expect(h1.innerHTML).to.equal("Welcome  .. Hello world.....");
     done();
     window.close();
 
