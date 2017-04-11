@@ -7,15 +7,15 @@ environment:
 #Install Scripts. (run after repo cloning)
 install:
   # Get latest stable version of Node.js or io.js
-  -ps Install-Product node $env:no
+  - ps Install-Product node $env:no
   # install modules
-  -npm install
+  - npm install
 
   #Post-install test Scripts
   test_script:
       #Output useful info for debugging
-      -node --version
-      -npm --version
+      - node --version
+      - npm --version
       #run tests
       - npm test
 
