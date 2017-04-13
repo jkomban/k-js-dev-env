@@ -8,7 +8,7 @@
 
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch start-mock-api",
     "open:src":"babel-node buildScripts/srcServer.js",
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch":"npm run lint -- --watch ",
@@ -16,7 +16,14 @@
     "localtunnel": "lt --port 3001 --subdomain jkomban",
     "share" : "npm-run-all --parallel open:src localtunnel",
     "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\" ",
-    "test:watch" : "npm run test -- --watch"
+    "test:watch" : "npm run test -- --watch",
+    "generate-mock-data": "babel-node buildScripts/generateMockData",
+    "prestart-mock-api" : "npm run generate-mock-data",
+    "start-mock-api": "json-server --watch src/api/db.json --port 3002",
+    "clean-dist":"rimraf ./dist && mkdir dist",
+    "prebuild" :"npm-run-all clean-dist test lint",
+    "build":"babel-node buildScripts/build.js",
+    "postbuild":"babel-node buildScripts/distServer.js"
 
   },
 

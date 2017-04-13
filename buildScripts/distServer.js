@@ -1,7 +1,5 @@
 import express from 'express';
-import webpack from 'webpack';
-import config from '../webpack.config.dev';
-
+import compression from 'compression';
 /* eslint-disable no-console*/
 var path = require('path');
 var open= require('open');
@@ -9,12 +7,9 @@ var open= require('open');
 
 var port = 3001;
 var app = express();
-const compiler = webpack(config);
 
-app.use(require('webpack-dev-middleware')(compiler,{
-  noInfo: true,
-  publicPath: config.output.publicPath
-}));
+app.use(compression()); /*Only to test prod build works in local*/
+app.use(express.static('dist')); /*Only to test prod build works in local*/
 
 app.get('/', function(req,res){
   res.sendFile(path.join(__dirname,'../src/index.html'));

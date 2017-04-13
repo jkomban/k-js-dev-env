@@ -16,14 +16,14 @@ describe('Our first test',() =>{
 
 describe('index.html',function(){
 
-  it('should say hello',(done)=>{
+  it('should have h1 that says users',(done)=>{
 
     const index = fs.readFileSync('./src/index.html',"utf-8");
     jsdom.env(index, function(err,window){
 
     const h1 = window.document.getElementsByTagName('h1')[0];
 
-    expect(h1.innerHTML).to.equal("Welcome  .. Hello world......");
+    expect(h1.innerHTML).to.equal("Users");
     done();
     window.close();
 
